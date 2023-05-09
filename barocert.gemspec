@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email       = 'dev@linkhub.co.kr'
   s.files       = [
     "lib/barocert.rb",
-    "lib/barocert/kakaocer.rb"
+    "lib/barocert/kakaocert.rb"
   ]
   s.license     = 'MIT'
   s.homepage    = 'https://github.com/barocert/barocert.ruby'
