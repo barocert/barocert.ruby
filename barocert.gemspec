@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'barocert'
-  s.version     = '1.0.0'
-  s.date        = '2023-05-03'
+  s.version     = '1.0.1'
+  s.date        = '2023-06-14'
   s.summary     = 'barocert API SDK'
   s.description = 'barocert API SDK'
   s.authors     = ["Linkhub Dev"]

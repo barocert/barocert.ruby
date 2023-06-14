@@ -81,16 +81,14 @@ class KakaocertService < BarocertService
 		if identity.nil?
 			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.s')
 		end
-		if identity["ci"].to_s == ''
-			if identity["receiverHP"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
-			end
-			if identity["receiverName"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
-			end
-			if identity["receiverBirthday"].to_s == ''
-				raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-			end
+		if identity["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if identity["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if identity["receiverBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
 		
 		if identity["reqTitle"].to_s == ''
@@ -168,16 +166,14 @@ class KakaocertService < BarocertService
 		if sign.nil?
 			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.s')
 		end
-		if sign["ci"].to_s == ''
-			if sign["receiverHP"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
-			end
-			if sign["receiverName"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
-			end
-			if sign["receiverBirthday"].to_s == ''
-				raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-			end
+		if sign["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if sign["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if sign["receiverBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
 		
 		if sign["reqTitle"].to_s == ''
@@ -257,16 +253,14 @@ class KakaocertService < BarocertService
 		if multiSign.nil?
 			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.s')
 		end
-		if multiSign["ci"].to_s == ''
-			if multiSign["receiverHP"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
-			end
-			if multiSign["receiverName"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
-			end
-			if multiSign["receiverBirthday"].to_s == ''
-				raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-			end
+		if multiSign["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if multiSign["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if multiSign["receiverBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
 		
 		if multiSign["reqTitle"].to_s == ''
@@ -351,16 +345,14 @@ class KakaocertService < BarocertService
 		if cms.nil?
 			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.s')
 		end
-		if cms["ci"].to_s == ''
-			if cms["receiverHP"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
-			end
-			if cms["receiverName"].to_s == ''
-				raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
-			end
-			if cms["receiverBirthday"].to_s == ''
-				raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-			end
+		if cms["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if cms["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if cms["receiverBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
 		
 		if cms["reqTitle"].to_s == ''

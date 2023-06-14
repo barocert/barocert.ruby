@@ -17,7 +17,6 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 		"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 	# 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-	# 		"ci" => '',
 	# 		"reqTitle" => '인증요청 메시지 제목란',
 	# 		"expireIn" => 1000,
 	# 		"token" => BaseServiceTest::KakaocertInstance._encrypt('본인인증요청토큰'),
@@ -64,7 +63,6 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
 # 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-# 		"ci" => '',
 # 		"reqTitle" => '인증요청 메시지 제목란',
 # 		"expireIn" => 1000,
 # 		"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명단건테스트데이터'),
@@ -114,7 +112,6 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
 # 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-# 		"ci" => '',
 # 		"reqTitle" => '인증요청 메시지 제목란',
 # 		"expireIn" => 1000,
 # 		"tokens" => [
@@ -164,32 +161,31 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	assert_not_nil(response)
 	# end
 
-	def test_10requestCMS
-		clientCode = '023040000001'
+	# def test_10requestCMS
+	# 	clientCode = '023040000001'
 
-		cms = {
-			"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
-			"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
-			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-			"ci" => '',
-			"reqTitle" => '인증요청 메시지 제목란',
-			"expireIn" => 1000,
-			"requestCorp" => BaseServiceTest::KakaocertInstance._encrypt("링크허브"),
-			"bankName" => BaseServiceTest::KakaocertInstance._encrypt("국민은행"),
-			"bankAccountNum" => BaseServiceTest::KakaocertInstance._encrypt("19-321442-1231"),
-			"bankAccountName" => BaseServiceTest::KakaocertInstance._encrypt("홍길동"),
-			"bankAccountBirthday" => BaseServiceTest::KakaocertInstance._encrypt("19700101"),
-			"bankServiceType" => BaseServiceTest::KakaocertInstance._encrypt("CMS"),
-			"appUseYN" => false,
-			"returnURL" => 'https://kakao.barocert.com'
-		}
+	# 	cms = {
+	# 		"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
+	# 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
+	# 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
+	# 		"reqTitle" => '인증요청 메시지 제목란',
+	# 		"expireIn" => 1000,
+	# 		"requestCorp" => BaseServiceTest::KakaocertInstance._encrypt("링크허브"),
+	# 		"bankName" => BaseServiceTest::KakaocertInstance._encrypt("국민은행"),
+	# 		"bankAccountNum" => BaseServiceTest::KakaocertInstance._encrypt("19-321442-1231"),
+	# 		"bankAccountName" => BaseServiceTest::KakaocertInstance._encrypt("홍길동"),
+	# 		"bankAccountBirthday" => BaseServiceTest::KakaocertInstance._encrypt("19700101"),
+	# 		"bankServiceType" => BaseServiceTest::KakaocertInstance._encrypt("CMS"),
+	# 		"appUseYN" => false,
+	# 		"returnURL" => 'https://kakao.barocert.com'
+	# 	}
 
-		response = BaseServiceTest::KakaocertInstance.requestCMS(
-			clientCode,
-			cms,
-		)
-		puts response
-	end
+	# 	response = BaseServiceTest::KakaocertInstance.requestCMS(
+	# 		clientCode,
+	# 		cms,
+	# 	)
+	# 	puts response
+	# end
 
 	# def test_11getCMSStatus
 		
