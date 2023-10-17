@@ -10,7 +10,7 @@ class BarocertService
 	ServiceID_REAL = "BAROCERT"
 	ServiceURL = "https://barocert.linkhub.co.kr"
 	ServiceURL_Static = "https://static-barocert.linkhub.co.kr"
-	APIVersion = "2.0"
+	APIVersion = "2.1"
 	BOUNDARY = "==BAROCERT_RUBY_SDK=="
 	
 	attr_accessor :token_table, :scopes, :linkhub, :ipRestrictOnOff, :useStaticIP, :useLocalTimeYN
@@ -25,12 +25,12 @@ class BarocertService
 			@instance.ipRestrictOnOff = false
 			@instance.useStaticIP = false
 			@instance.useLocalTimeYN = true
+			@instance.__ServiceURL = true
 			return @instance
 		end
 
 		private :new
 	end
-
 
 	# add Service Scope array
 	def addScope(scopeValue)
@@ -49,12 +49,19 @@ class BarocertService
 		@useLocalTimeYN = value
 	end
 
+	def setServiceURL(value)
+		@__ServiceURL = value
+	end
+
 	def getServiceURL()
-		if @useStaticIP
-			return ServiceURL_Static
+		if @__ServiceURL.nil? || @__ServiceURL == ""
+			if @useStaticIP
+				return ServiceURL_Static
+			else
+				return ServiceURL
+			end
 		else
-			return ServiceURL
-		end
+			return @__ServiceURL
 	end
 
 	# Get Session Token by checking token-cached hash or token Request
@@ -139,11 +146,11 @@ class BarocertService
 		date = @linkhub.getTime(@useStaticIP, false)
 
 		hmacTarget = "POST\n"
-		hmacTarget += url + "\n"
 		if postData != nil
 			hmacTarget += Base64.strict_encode64(Digest::SHA256.digest(postData)) + "\n"
 		end
 		hmacTarget += date + "\n"
+		hmacTarget += url + "\n"
 
 		key = Base64.decode64(@linkhub._secretKey)
 

@@ -3,18 +3,17 @@ require_relative '../barocert.rb'
 require 'openssl'
 require 'base64'
 
-# kakaocert API BaseService class
-class KakaocertService < BarocertService
+# passcert API BaseService class
+class PasscertService < BarocertService
 	# Generate Linkhub Class Singleton Instance
 	class << self
 		def instance(linkID, secretKey)
 			super(linkID, secretKey)
 			@instance ||= new
-			@instance.addScope("401")
-			@instance.addScope("402")
-			@instance.addScope("403")
-			@instance.addScope("404")
-			@instance.addScope("405")
+			@instance.addScope("441")
+			@instance.addScope("442")
+			@instance.addScope("443")
+			@instance.addScope("444")
 			return @instance
 		end
 		private :new
@@ -88,23 +87,20 @@ class KakaocertService < BarocertService
 		if identity["receiverName"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
-		if identity["receiverBirthday"].to_s == ''
-			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-		end
-		
 		if identity["reqTitle"].to_s == ''
 			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
 		end
-
+		if identity["callCenterNum"].to_s == ''
+			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')
+		end
 		if identity["expireIn"].to_s == ''
 			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
 		end
-		
 		if identity["token"].to_s == ''
 			raise BarocertException.new('-99999999', '토큰 원문이 입력되지 않았습니다.')
 		end
 
-		httppost("/KAKAO/Identity/#{clientCode}", identity.to_json)
+		httppost("/PASS/Identity/#{clientCode}", identity.to_json)
 	end
 	
 	def getIdentityStatus(clientCode, receiptID)
@@ -128,10 +124,10 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httpget("/KAKAO/Identity/#{clientCode}/#{receiptID}")
+		httpget("/PASS/Identity/#{clientCode}/#{receiptID}")
 	end
 	
-	def verifyIdentity(clientCode, receiptID)
+	def verifyIdentity(clientCode, receiptID, identityVerify)
 		if clientCode.to_s == ''
 			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
 		end
@@ -150,8 +146,17 @@ class KakaocertService < BarocertService
 		if receiptID.length != 32
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
+		if identityVerify.nil?
+			raise BarocertException.new('-99999999', '본인인증 검증 요청 정보가 입력되지 않았습니다.')
+		end
+		if identityVerify["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if identityVerify["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
 
-		httppost("/KAKAO/Identity/#{clientCode}/#{receiptID}")
+		httppost("/PASS/Identity/#{clientCode}/#{receiptID}", identityVerify.to_json)
 	end
 
 	def requestSign(clientCode, sign)
@@ -165,7 +170,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if sign.nil?
-			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '전자서명 요청정보가 입력되지 않았습니다.')
 		end
 		if sign["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
@@ -173,26 +178,22 @@ class KakaocertService < BarocertService
 		if sign["receiverName"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
-		if sign["receiverBirthday"].to_s == ''
-			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-		end
-		
 		if sign["reqTitle"].to_s == ''
 			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
 		end
-
+		if sign["callCenterNum"].to_s == ''
+			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')
+		end
 		if sign["expireIn"].to_s == ''
 			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
 		end
-		
 		if sign["token"].to_s == ''
 			raise BarocertException.new('-99999999', '토큰 원문이 입력되지 않았습니다.')
 		end
-
 		if sign["tokenType"].to_s == ''
 			raise BarocertException.new('-99999999', '원문 유형이 입력되지 않았습니다.')
 		end
-		httppost("/KAKAO/Sign/#{clientCode}", sign.to_json)
+		httppost("/PASS/Sign/#{clientCode}", sign.to_json)
 	end
 
 	def getSignStatus(clientCode, receiptID)
@@ -215,10 +216,10 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httpget("/KAKAO/Sign/#{clientCode}/#{receiptID}")
+		httpget("/PASS/Sign/#{clientCode}/#{receiptID}")
 	end
 
-	def verifySign(clientCode, receiptID)
+	def verifySign(clientCode, receiptID, signVerify)
 		if clientCode.to_s == ''
 			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
 		end
@@ -237,100 +238,17 @@ class KakaocertService < BarocertService
 		if receiptID.length != 32
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
-
-		httppost("/KAKAO/Sign/#{clientCode}/#{receiptID}")
-	end
-
-	def requestMultiSign(clientCode, multiSign)
-		if clientCode.to_s == ''
-			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		if signVerify.nil?
+			raise BarocertException.new('-99999999', '전자서명 검증 요청 정보가 입력되지 않았습니다.')
 		end
-		if clientCode.is_i? == false
-			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
-		end
-		if clientCode.length != 12
-			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
-		end
-		if multiSign.nil?
-			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.')
-		end
-		if multiSign["receiverHP"].to_s == ''
+		if signVerify["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
 		end
-		if multiSign["receiverName"].to_s == ''
+		if signVerify["receiverName"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
-		if multiSign["receiverBirthday"].to_s == ''
-			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-		end
-		
-		if multiSign["reqTitle"].to_s == ''
-			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
-		end
 
-		if multiSign["expireIn"].to_s == ''
-			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
-		end
-		
-		if isNullorEmptyTitle(multiSign["tokens"])
-			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
-		end
-
-		if isNullorEmptyToken(multiSign["tokens"])
-			raise BarocertException.new('-99999999', '토큰 원문이 입력되지 않았습니다.')
-		end
-
-		if multiSign["tokenType"].to_s == ''
-			raise BarocertException.new('-99999999', '원문 유형이 입력되지 않았습니다.')
-		end
-
-		httppost("/KAKAO/MultiSign/#{clientCode}", multiSign.to_json)
-	end
-
-	def getMultiSignStatus(clientCode, receiptID)
-		if clientCode.to_s == ''
-			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
-		end
-		if clientCode.is_i? == false
-			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
-		end
-		if clientCode.length != 12
-			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
-		end
-		if receiptID.to_s == ''
-			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
-		end
-		if receiptID.is_i? == false
-			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
-		end
-		if receiptID.length != 32
-			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
-		end
-
-		httpget("/KAKAO/MultiSign/#{clientCode}/#{receiptID}")
-	end
-
-	def verifyMultiSign(clientCode, receiptID)
-		if clientCode.to_s == ''
-			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
-		end
-		if clientCode.is_i? == false
-			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
-		end
-		if clientCode.length != 12
-			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
-		end
-		if receiptID.to_s == ''
-			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
-		end
-		if receiptID.is_i? == false
-			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
-		end
-		if receiptID.length != 32
-			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
-		end
-
-		httppost("/KAKAO/MultiSign/#{clientCode}/#{receiptID}")
+		httppost("/PASS/Sign/#{clientCode}/#{receiptID}", signVerify.to_json)
 	end
 
 	def requestCMS(clientCode, cms)
@@ -344,7 +262,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if cms.nil?
-			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '출금동의 서명요청 정보가 입력되지 않았습니다.')
 		end
 		if cms["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
@@ -352,44 +270,29 @@ class KakaocertService < BarocertService
 		if cms["receiverName"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
-		if cms["receiverBirthday"].to_s == ''
-			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
-		end
-		
 		if cms["reqTitle"].to_s == ''
 			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
 		end
-
+		if cms["callCenterNum"].to_s == ''
+			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')
+		end
 		if cms["expireIn"].to_s == ''
 			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
 		end
-		
-		if cms["requestCorp"].to_s == ''
-			raise BarocertException.new('-99999999', '청구기관명이 입력되지 않았습니다.')
-		end
-
 		if cms["bankName"].to_s == ''
-			raise BarocertException.new('-99999999', '은행명이 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '출금은행명이 입력되지 않았습니다.')
 		end
-		
 		if cms["bankAccountNum"].to_s == ''
-			raise BarocertException.new('-99999999', '계좌번호가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '출금계좌번호가 입력되지 않았습니다.')
 		end
-		
 		if cms["bankAccountName"].to_s == ''
-			raise BarocertException.new('-99999999', '예금주명이 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '출금계좌 예금주명이 입력되지 않았습니다.')
 		end
-		
-		if cms["bankAccountBirthday"].to_s == ''
-			raise BarocertException.new('-99999999', '예금주 생년월일이 입력되지 않았습니다.')
-		end
-
 		if cms["bankServiceType"].to_s == ''
 			raise BarocertException.new('-99999999', '출금 유형이 입력되지 않았습니다.')
 		end
-		httppost("/KAKAO/CMS/#{clientCode}", cms.to_json)
+		httppost("/PASS/CMS/#{clientCode}", cms.to_json)
 	end
-	
 
 	def getCMSStatus(clientCode, receiptID)
 		if clientCode.to_s == ''
@@ -411,10 +314,10 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httpget("/KAKAO/CMS/#{clientCode}/#{receiptID}")
+		httpget("/PASS/CMS/#{clientCode}/#{receiptID}")
 	end
 
-	def verifyCMS(clientCode, receiptID)
+	def verifyCMS(clientCode, receiptID, cmsVerify)
 		if clientCode.to_s == ''
 			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
 		end
@@ -433,11 +336,21 @@ class KakaocertService < BarocertService
 		if receiptID.length != 32
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
+		if cmsVerify.nil?
+			raise BarocertException.new('-99999999', '출금동의 검증 요청 정보가 입력되지 않았습니다.')
+		end
+		if cmsVerify["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if cmsVerify["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
 
-		httppost("/KAKAO/CMS/#{clientCode}/#{receiptID}")
+		httppost("/PASS/CMS/#{clientCode}/#{receiptID}")
 	end
 
-	def verifyLogin(clientCode, txID)
+	def requestLogin(clientCode, login)
+
 		if clientCode.to_s == ''
 			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
 		end
@@ -447,11 +360,85 @@ class KakaocertService < BarocertService
 		if clientCode.length != 12
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
-		if txID.to_s == ''
-			raise BarocertException.new('-99999999', 'txID가 입력되지 않았습니다.')
+		if login.nil?
+			raise BarocertException.new('-99999999', '간편로그인 서명요청 정보가 입력되지 않았습니다.s')
 		end
-		
-		httppost("/KAKAO/Login/#{clientCode}/#{receiptID}")
+		if login["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if login["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if login["reqTitle"].to_s == ''
+			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
+		end
+		if login["callCenterNum"].to_s == ''
+			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')
+		end
+		if login["expireIn"].to_s == ''
+			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
+		end
+		if login["token"].to_s == ''
+			raise BarocertException.new('-99999999', '토큰 원문이 입력되지 않았습니다.')
+		end
+	
+		httppost("/PASS/Login/#{clientCode}", login.to_json)
+	end
+	
+	def getLoginStatus(clientCode, receiptID)
+		puts receiptID
+		if clientCode.to_s == ''
+			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		end
+		if clientCode.is_i? == false
+			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
+		end
+		if clientCode.length != 12
+			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
+		end
+		if receiptID.to_s == ''
+			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
+		end
+		if receiptID.is_i? == false
+			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
+		end
+		if receiptID.length != 32
+			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
+		end
+	
+		httpget("/PASS/Login/#{clientCode}/#{receiptID}")
+	end
+	
+	def verifyLogin(clientCode, receiptID, loginVerify)
+		if clientCode.to_s == ''
+			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		end
+		if clientCode.is_i? == false
+			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
+		end
+		if clientCode.length != 12
+			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
+		end
+		if receiptID.to_s == ''
+			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
+		end
+		if receiptID.is_i? == false
+			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
+		end
+		if receiptID.length != 32
+			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
+		end
+		if loginVerify.nil?
+			raise BarocertException.new('-99999999', '간편로그인 검증 요청 정보가 입력되지 않았습니다.')
+		end
+		if loginVerify["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if loginVerify["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+	
+		httppost("/PASS/Login/#{clientCode}/#{receiptID}", loginVerify.to_json)
 	end
 end
 
