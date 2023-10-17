@@ -346,7 +346,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
 
-		httppost("/PASS/CMS/#{clientCode}/#{receiptID}")
+		httppost("/PASS/CMS/#{clientCode}/#{receiptID}", cmsVerify.to_json)
 	end
 
 	def requestLogin(clientCode, login)

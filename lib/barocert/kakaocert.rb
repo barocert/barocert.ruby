@@ -448,10 +448,10 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if txID.to_s == ''
-			raise BarocertException.new('-99999999', 'txID가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '트랜잭션 아이디가 입력되지 않았습니다.')
 		end
 		
-		httppost("/KAKAO/Login/#{clientCode}/#{receiptID}")
+		httppost("/KAKAO/Login/#{clientCode}/#{txID}")
 	end
 end
 

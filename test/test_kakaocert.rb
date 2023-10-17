@@ -21,7 +21,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"expireIn" => 1000,
 # 			"token" => BaseServiceTest::KakaocertInstance._encrypt('본인인증 요청 토큰'),
 # 			"returnURL" => 'https://kakao.barocert.com',
-# 			'appUseYN' => true
+# 			'appUseYN' => false
 # 		}        
 		
 # 		response = BaseServiceTest::KakaocertInstance.requestIdentity(
@@ -67,7 +67,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"expireIn" => 1000,
 # 			"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 토큰'),
 # 			"tokenType" => 'TEXT',
-# 			"appUseYN" => true,
+# 			"appUseYN" => false,
 # 			"returnURL" => 'https://kakao.barocert.com'
 # 		}
 

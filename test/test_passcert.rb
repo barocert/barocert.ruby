@@ -51,7 +51,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023070000014"
 	# 	receiptID = "02304190230300000040000000000039"
 
-	# 	IdentityVerify = {
+	# 	identityVerify = {
 	# 		"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동')
 	# 	}
@@ -59,7 +59,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	response = BaseServiceTest::PasscertInstance.verifyIdentity(
 	# 		clientCode,
 	# 		receiptID,
-	# 		IdentityVerify
+	# 		identityVerify
 	# 	)
 	# 	puts response
 	# 	assert_not_nil(response)
@@ -113,7 +113,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023070000014"
 	# 	receiptID = "02304190230300000040000000000040"
 
-	# 	SignVerify = {
+	# 	signVerify = {
 	# 		"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동')
 	# 	}
@@ -121,7 +121,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	response = BaseServiceTest::PasscertInstance.verifySign(
 	# 		clientCode,
 	# 		receiptID,
-	# 		SignVerify
+	# 		signVerify
 	# 	)
 	# 	puts response
 	# 	assert_not_nil(response)
@@ -175,7 +175,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = '023070000014'
 	# 	receiptID = "02305040230700000140000000000013"
 
-	# 	CMSVerify = {
+	# 	cmsVerify = {
 	# 		"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동')
 	# 	}
@@ -183,7 +183,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	response = BaseServiceTest::PasscertInstance.verifyCMS(
 	# 		clientCode,
 	# 		receiptID,
-	# 		CMSVerify
+	# 		cmsVerify
 	# 	)
 	# 	puts response
 	# 	assert_not_nil(response)
@@ -211,7 +211,7 @@ class BaseServiceTest < Test::Unit::TestCase
 		
 	# 	response = BaseServiceTest::PasscertInstance.requestLogin(
 	# 		clientCode,
-	# 		identity,
+	# 		login,
 	# 	)
 	# 	puts response
 	# end
@@ -232,7 +232,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023070000014"
 	# 	receiptID = "02304190230300000040000000000039"
 
-	# 	LoginVerify = {
+	# 	loginVerify = {
 	# 		"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동')
 	# 	}
@@ -240,7 +240,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	response = BaseServiceTest::PasscertInstance.verifyLogin(
 	# 		clientCode,
 	# 		receiptID,
-	# 		LoginVerify
+	# 		loginVerify
 	# 	)
 	# 	puts response
 	# 	assert_not_nil(response)
