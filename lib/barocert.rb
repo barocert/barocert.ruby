@@ -13,7 +13,7 @@ class BarocertService
 	APIVersion = "2.1"
 	BOUNDARY = "==BAROCERT_RUBY_SDK=="
 	
-	attr_accessor :token_table, :scopes, :linkhub, :ipRestrictOnOff, :useStaticIP, :useLocalTimeYN
+	attr_accessor :token_table, :scopes, :linkhub, :ipRestrictOnOff, :useStaticIP, :useLocalTimeYN, :__ServiceURL
 
 	# Generate Linkhub Class Singleton Instance
 	class << self
@@ -25,7 +25,7 @@ class BarocertService
 			@instance.ipRestrictOnOff = false
 			@instance.useStaticIP = false
 			@instance.useLocalTimeYN = true
-			@instance.__ServiceURL = true
+			@instance.__ServiceURL = ""
 			return @instance
 		end
 
@@ -62,6 +62,7 @@ class BarocertService
 			end
 		else
 			return @__ServiceURL
+		end
 	end
 
 	# Get Session Token by checking token-cached hash or token Request
