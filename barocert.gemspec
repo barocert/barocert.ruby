@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'barocert'
-  s.version     = '1.1.0'
-  s.date        = '2023-10-16'
+  s.version     = '1.1.1'
+  s.date        = '2023-10-23'
   s.summary     = 'barocert API SDK'
   s.description = 'barocert API SDK'
   s.authors     = ["Linkhub Dev"]
@@ -14,5 +14,5 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.homepage    = 'https://github.com/barocert/barocert.ruby'
   s.required_ruby_version = '>= 2.0.0'
-  s.add_runtime_dependency 'linkhub', '1.5.0'
+  s.add_runtime_dependency 'linkhub', '1.6.0'
 end

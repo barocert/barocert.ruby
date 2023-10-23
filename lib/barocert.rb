@@ -13,7 +13,7 @@ class BarocertService
 	APIVersion = "2.1"
 	BOUNDARY = "==BAROCERT_RUBY_SDK=="
 	
-	attr_accessor :token_table, :scopes, :linkhub, :ipRestrictOnOff, :useStaticIP, :useLocalTimeYN, :__ServiceURL
+	attr_accessor :token_table, :scopes, :linkhub, :ipRestrictOnOff, :useStaticIP, :useLocalTimeYN
 
 	# Generate Linkhub Class Singleton Instance
 	class << self
@@ -25,7 +25,6 @@ class BarocertService
 			@instance.ipRestrictOnOff = false
 			@instance.useStaticIP = false
 			@instance.useLocalTimeYN = true
-			@instance.__ServiceURL = ""
 			return @instance
 		end
 
@@ -50,18 +49,22 @@ class BarocertService
 	end
 
 	def setServiceURL(value)
-		@__ServiceURL = value
+		@_ServiceURL = value
 	end
 
+	def setAuthURL(value)
+		@linkhub.setServiceURL(value)
+	end 
+
 	def getServiceURL()
-		if @__ServiceURL.nil? || @__ServiceURL == ""
+		if @_ServiceURL.nil? || @_ServiceURL == ""
 			if @useStaticIP
 				return ServiceURL_Static
 			else
 				return ServiceURL
 			end
 		else
-			return @__ServiceURL
+			return @_ServiceURL
 		end
 	end
 
