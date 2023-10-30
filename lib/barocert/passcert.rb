@@ -79,7 +79,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if identity.nil?
-			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '본인인증 요청정보가 입력되지 않았습니다.')
 		end
 		if identity["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
@@ -262,7 +262,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if cms.nil?
-			raise BarocertException.new('-99999999', '출금동의 서명요청 정보가 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '출금동의 요청정보가 입력되지 않았습니다.')
 		end
 		if cms["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
@@ -361,7 +361,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
 		end
 		if login.nil?
-			raise BarocertException.new('-99999999', '간편로그인 서명요청 정보가 입력되지 않았습니다.s')
+			raise BarocertException.new('-99999999', '간편로그인 요청정보가 입력되지 않았습니다.s')
 		end
 		if login["receiverHP"].to_s == ''
 			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')

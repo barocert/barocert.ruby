@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'barocert'
-  s.version     = '1.1.1'
-  s.date        = '2023-10-23'
+  s.version     = '1.2.0'
+  s.date        = '2023-10-30'
   s.summary     = 'barocert API SDK'
   s.description = 'barocert API SDK'
   s.authors     = ["Linkhub Dev"]
@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.files       = [
     "lib/barocert.rb",
     "lib/barocert/kakaocert.rb",
+    "lib/barocert/navercert.rb",
     "lib/barocert/passcert.rb"
   ]
   s.license     = 'MIT'
