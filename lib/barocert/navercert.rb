@@ -89,10 +89,6 @@ class NavercertService < BarocertService
 		if identity["receiverBirthday"].to_s == ''
 			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
-		
-		if identity["reqTitle"].to_s == ''
-			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
-		end
 
 		if identity["callCenterNum"].to_s == ''
 			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')

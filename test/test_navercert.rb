@@ -14,13 +14,11 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023090000021"
 
 	# 	identity = {
-	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01012341234'),
+	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01054437896'),
 	# 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
 	# 		"receiverBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),
-	# 		"reqTitle" => '본인인증 요청 메시지 제목',
 	# 		"callCenterNum"	=> "1588-1600",
 	# 		"expireIn" => 1000,
-	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('본인인증 요청 토큰'),
 	# 		"returnURL" => 'https://naver.barocert.com',
 	# 		'appUseYN' => false
 	# 	}        
