@@ -19,7 +19,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
 # 			"reqTitle" => '본인인증 요청 메시지 제목',
 # 			"expireIn" => 1000,
-# 			"token" => BaseServiceTest::KakaocertInstance._encrypt('본인인증 요청 토큰'),
+# 			"token" => BaseServiceTest::KakaocertInstance._encrypt('본인인증 요청 원문'),
 # 			"returnURL" => 'https://kakao.barocert.com',
 # 			'appUseYN' => false
 # 		}        
@@ -65,7 +65,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
 # 			"reqTitle" => '전자서명(단건) 요청 메시지 제목',
 # 			"expireIn" => 1000,
-# 			"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 토큰'),
+# 			"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 원문'),
 # 			"tokenType" => 'TEXT',
 # 			"appUseYN" => false,
 # 			"returnURL" => 'https://kakao.barocert.com'
@@ -115,12 +115,12 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		"expireIn" => 1000,
 # 		"tokens" => [
 # 			{
-# 				"reqTitle" => "전자서명(복수) 요청 타이틀1",
-# 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 토큰1'),
+# 				"reqTitle" => "전자서명(복수) 요청 메시지 제목 1",
+# 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 원문 1'),
 # 			},
 # 			{
-# 				"reqTitle" => "전자서명(복수) 요청 타이틀2",
-# 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 토큰2'),
+# 				"reqTitle" => "전자서명(복수) 요청 메시지 제목 2",
+# 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 원문 2'),
 # 			},
 # 		],
 # 		"tokenType" => 'TEXT',

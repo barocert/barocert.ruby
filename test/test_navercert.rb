@@ -63,10 +63,10 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
 	# 		"receiverBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),
 	# 		"reqTitle" => '전자서명(단건) 요청 메시지 제목',
-	# 		"reqMessage" => BaseServiceTest::NavercertInstance._encrypt('요청 메시지'),
+	# 		"reqMessage" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 메시지'),
 	# 		"callCenterNum"	=> "1588-1600",
 	# 		"expireIn" => 1000,
-	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 토큰'),
+	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 원문'),
 	# 		"tokenType" => 'TEXT',
 	# 		"appUseYN" => false,
 	# 		"returnURL" => 'https://naver.barocert.com'
@@ -113,16 +113,16 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
 # 		"receiverBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),
 # 		"reqTitle" => '전자서명(복수) 요청 메시지 제목',
-# 		"reqMessage" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 메시지 제목'),
+# 		"reqMessage" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 메시지'),
 # 		"callCenterNum" => '1588-1600',
 # 		"expireIn" => 1000,
 # 		"tokens" => [
 # 			{
-# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 토큰1'),
+# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 1'),
 # 				"tokenType" => "TEXT",
 # 			},
 # 			{
-# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 토큰2'),
+# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 2'),
 # 				"tokenType" => "TEXT",
 # 			},
 # 		],
