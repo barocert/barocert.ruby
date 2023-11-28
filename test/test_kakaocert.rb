@@ -18,12 +18,13 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
 # 			"reqTitle" => '본인인증 요청 메시지 제목',
+# 			"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('본인인증 커스텀 메시지'),
 # 			"expireIn" => 1000,
 # 			"token" => BaseServiceTest::KakaocertInstance._encrypt('본인인증 요청 원문'),
 # 			"returnURL" => 'https://kakao.barocert.com',
 # 			'appUseYN' => false
 # 		}        
-		
+
 # 		response = BaseServiceTest::KakaocertInstance.requestIdentity(
 # 			clientCode,
 # 			identity,
@@ -56,14 +57,15 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # 	def test_04requestSign
-		
+
 # 		clientCode = "023040000001"
 
 # 		sign = {
 # 			"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
 # 			"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-# 			"reqTitle" => '전자서명(단건) 요청 메시지 제목',
+# 			"signTitle" => '전자서명(단건) 서명 요청 제목',
+# 			"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 커스텀 메시지'),
 # 			"expireIn" => 1000,
 # 			"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 원문'),
 # 			"tokenType" => 'TEXT',
@@ -79,7 +81,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # 	def test_05getSignStatus
-		
+
 # 		clientCode = "023040000001"
 # 		receiptID = "02304190230300000040000000000040"
 
@@ -104,7 +106,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # def test_07requestMultiSign
-	
+
 # 	clientCode = "023040000001"
 
 # 	multiSign = {
@@ -112,14 +114,15 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
 # 		"reqTitle" => '전자서명(복수) 요청 메시지 제목',
+# 		"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 커스텀 메시지'),
 # 		"expireIn" => 1000,
 # 		"tokens" => [
 # 			{
-# 				"reqTitle" => "전자서명(복수) 요청 메시지 제목 1",
+# 				"signTitle" => "전자서명(복수) 서명 요청 제목 1",
 # 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 원문 1'),
 # 			},
 # 			{
-# 				"reqTitle" => "전자서명(복수) 요청 메시지 제목 2",
+# 				"signTitle" => "전자서명(복수) 서명 요청 제목 2",
 # 				"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(복수) 요청 원문 2'),
 # 			},
 # 		],
@@ -136,7 +139,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # end
 
 # 	def test_08getMultiSignStatus
-		
+
 # 		clientCode = "023040000001"
 # 		receiptID = "02305040230400000010000000000012"
 
@@ -168,6 +171,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 			"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
 # 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
 # 			"reqTitle" => '출금동의 요청 메시지 제목',
+# 			"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('출금동의 커스텀 메시지'),
 # 			"expireIn" => 1000,
 # 			"requestCorp" => BaseServiceTest::KakaocertInstance._encrypt("링크허브"),
 # 			"bankName" => BaseServiceTest::KakaocertInstance._encrypt("국민은행"),
@@ -187,7 +191,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # 	def test_11getCMSStatus
-		
+
 # 		clientCode = '023040000001'
 # 		receiptID = "02305040230400000010000000000013"
 
@@ -200,7 +204,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # 	def test_12verifyCMS
-		
+
 # 		clientCode = '023040000001'
 # 		receiptID = "02305040230400000010000000000013"
 
@@ -213,7 +217,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 	end
 
 # 	def test_13verifyLogin
-		
+
 # 		clientCode = '023040000001'
 # 		txID = "01432a68fd-d92c-4c70-9888-ee42b7ce4d25"
 

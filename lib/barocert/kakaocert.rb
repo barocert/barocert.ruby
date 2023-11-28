@@ -46,7 +46,7 @@ class KakaocertService < BarocertService
 			if token.nil?
 				return true
 			end
-			if token["reqTitle"].to_s == ''
+			if token["signTitle"].to_s == '' && token["reqTitle"].to_s == ''
 				return true
 			end
 		}
@@ -177,8 +177,8 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
 		end
 		
-		if sign["reqTitle"].to_s == ''
-			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
+		if sign["signTitle"].to_s == '' && sign["reqTitle"].to_s == ''
+			raise BarocertException.new('-99999999', '서명 요청 제목이 입력되지 않았습니다.')
 		end
 
 		if sign["expireIn"].to_s == ''
@@ -273,7 +273,7 @@ class KakaocertService < BarocertService
 		end
 		
 		if isNullorEmptyTitle(multiSign["tokens"])
-			raise BarocertException.new('-99999999', '인증요청 메시지 제목이 입력되지 않았습니다.')
+			raise BarocertException.new('-99999999', '서명 요청 제목이 입력되지 않았습니다.')
 		end
 
 		if isNullorEmptyToken(multiSign["tokens"])
