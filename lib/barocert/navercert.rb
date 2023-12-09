@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require_relative '../barocert.rb'
+require 'digest'
 require 'openssl'
 require 'base64'
 
@@ -13,9 +14,19 @@ class NavercertService < BarocertService
 			@instance.addScope("421")
 			@instance.addScope("422")
 			@instance.addScope("423")
+			@instance.addScope("424")
 			return @instance
 		end
 		private :new
+	end
+
+	def _sha256(target)
+		return hash(target)
+	end
+
+	def hash(target)
+		hashed = Digest::SHA256.digest(target)
+		return Base64.urlsafe_encode64(hashed, padding:false)
 	end
 
 	def _encrypt(plaintext)
@@ -337,6 +348,100 @@ class NavercertService < BarocertService
 		end
 
 		httppost("/NAVER/MultiSign/#{clientCode}/#{receiptID}")
+	end
+
+	def requestCMS(clientCode, cms)
+
+		if clientCode.to_s == ''
+			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		end
+		if clientCode.is_i? == false
+			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
+		end
+		if clientCode.length != 12
+			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
+		end
+		if cms.nil?
+			raise BarocertException.new('-99999999', '본인인증 서명요청 정보가 입력되지 않았습니다.')
+		end
+		if cms["receiverHP"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 휴대폰번호가 입력되지 않았습니다.')
+		end
+		if cms["receiverName"].to_s == ''
+			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
+		end
+		if cms["receiverBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '생년월일이 입력되지 않았습니다.')
+		end
+		if cms["callCenterNum"].to_s == ''
+			raise BarocertException.new('-99999999', '고객센터 연락처가 입력되지 않았습니다.')
+		end
+		if cms["expireIn"].to_s == ''
+			raise BarocertException.new('-99999999', '만료시간이 입력되지 않았습니다.')
+		end
+		if cms["requestCorp"].to_s == ''
+			raise BarocertException.new('-99999999', '청구기관명이 입력되지 않았습니다.')
+		end
+		if cms["bankName"].to_s == ''
+			raise BarocertException.new('-99999999', '은행명이 입력되지 않았습니다.')
+		end
+		if cms["bankAccountNum"].to_s == ''
+			raise BarocertException.new('-99999999', '계좌번호가 입력되지 않았습니다.')
+		end
+		if cms["bankAccountName"].to_s == ''
+			raise BarocertException.new('-99999999', '예금주명이 입력되지 않았습니다.')
+		end
+		if cms["bankAccountBirthday"].to_s == ''
+			raise BarocertException.new('-99999999', '예금주 생년월일이 입력되지 않았습니다.')
+		end
+		httppost("/NAVER/CMS/#{clientCode}", cms.to_json)
+	end
+	
+	def getCMSStatus(clientCode, receiptID)
+		puts receiptID
+		if clientCode.to_s == ''
+			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		end
+		if clientCode.is_i? == false
+			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
+		end
+		if clientCode.length != 12
+			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
+		end
+		if receiptID.to_s == ''
+			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
+		end
+		if receiptID.is_i? == false
+			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
+		end
+		if receiptID.length != 32
+			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
+		end
+
+		httpget("/NAVER/CMS/#{clientCode}/#{receiptID}")
+	end
+	
+	def verifyCMS(clientCode, receiptID)
+		if clientCode.to_s == ''
+			raise BarocertException.new('-99999999', '이용기관코드가 입력되지 않았습니다.')
+		end
+		if clientCode.is_i? == false
+			raise BarocertException.new('-99999999', '이용기관코드는 숫자만 입력할 수 있습니다.')
+		end
+		if clientCode.length != 12
+			raise BarocertException.new('-99999999', '이용기관코드는 12자 입니다.')
+		end
+		if receiptID.to_s == ''
+			raise BarocertException.new('-99999999', '접수아이디가 입력되지 않았습니다.')
+		end
+		if receiptID.is_i? == false
+			raise BarocertException.new('-99999999', '접수아이디는 숫자만 입력할 수 있습니다.')
+		end
+		if receiptID.length != 32
+			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
+		end
+
+		httppost("/NAVER/CMS/#{clientCode}/#{receiptID}")
 	end
 end
 
