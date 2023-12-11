@@ -14,14 +14,12 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023090000021"
 
 	# 	identity = {
-	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01054437896'),
+	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
 	# 		"receiverBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),
 	# 		"callCenterNum"	=> "1588-1600",
 	# 		"expireIn" => 1000,
-	# 		"appUseYN" => false,
-	#		"deviceOSType" => 'IOS',
-	# 		"returnURL" => 'navercert://identity',
+	# 		"appUseYN" => false
 	# 	}        
 		
 	# 	response = BaseServiceTest::NavercertInstance.requestIdentity(
@@ -69,11 +67,7 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 		"expireIn" => 1000,
 	# 		"tokenType" => 'TEXT',
 	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 원문'),
-	# # 	"tokenType" => 'HASH',
-	# # 	"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256('전자서명(단건) 요청 원문')),
-	#		"appUseYN" => false,
-	#		"deviceOSType" => 'IOS',
-	# 		"returnURL" => 'navercert://sign',
+	#		"appUseYN" => false
 	# 	}
 
 	# 	response = BaseServiceTest::NavercertInstance.requestSign(
@@ -124,19 +118,13 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 			{
 	# 				"tokenType" => "TEXT",
 	# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 1'),
-	# # 			"tokenType" => 'HASH',
-	# # 			"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256('전자서명(단건) 요청 원문 1')),
 	# 			},
 	# 			{
 	# 				"tokenType" => "TEXT",
 	# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 2'),
-	# # 			"tokenType" => 'HASH',
-	# # 			"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256('전자서명(단건) 요청 원문 2')),
 	# 			},
 	# 		],
-	#		"appUseYN" => false,
-	#		"deviceOSType" => 'IOS',
-	# 		"returnURL" => 'navercert://sign',
+	#		"appUseYN" => false
 	# 	}
 
 	# 	response = BaseServiceTest::NavercertInstance.requestMultiSign(
@@ -176,21 +164,19 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	clientCode = "023090000021"
 
 	# 	cms = {
-	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01054437896'),
+	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
 	# 		"receiverBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),
 	# 		"reqTitle" => '출금동의 요청 메시지 제목',
-	#		"reqMessage" = BaseServiceTest::NavercertInstance._encrypt('출금동의 요청 메시지'),
+	# 		"reqMessage" => BaseServiceTest::NavercertInstance._encrypt('출금동의 요청 메시지'),
 	# 		"callCenterNum"	=> "1588-1600",
 	# 		"expireIn" => 1000,
-	#       "requestCorp" => BaseServiceTest::NavercertInstance._encrypt('청구기관'),    
-    #       "bankName" => BaseServiceTest::NavercertInstance._encrypt('출금은행'),    
-    #       "bankAccountNum" => BaseServiceTest::NavercertInstance._encrypt('123-456-7890'),    
-    #       "bankAccountName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),    
-    #       "bankAccountBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),    
-	# 		"appUseYN" => false,
-	#		"deviceOSType" => 'IOS',
-	# 		"returnURL" => 'navercert://cms',
+	# 		"requestCorp" => BaseServiceTest::NavercertInstance._encrypt('청구기관'),    
+	# 		"bankName" => BaseServiceTest::NavercertInstance._encrypt('출금은행'),    
+	# 		"bankAccountNum" => BaseServiceTest::NavercertInstance._encrypt('123-456-7890'),    
+	# 		"bankAccountName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),    
+	# 		"bankAccountBirthday" => BaseServiceTest::NavercertInstance._encrypt('19700101'),    
+	# 		"appUseYN" => false
 	# 	}        
 		
 	# 	response = BaseServiceTest::NavercertInstance.requestCMS(
@@ -212,15 +198,15 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	assert_not_nil(response)
 	# end
 
-	# 	def test_03verifyCMS
-	# 		clientCode = "023090000021"
-	# 		receiptID = "02310300230900000210000000000004"
+	# def test_03verifyCMS
+	# 	clientCode = "023090000021"
+	# 	receiptID = "02310300230900000210000000000004"
 
-	# 		response = BaseServiceTest::NavercertInstance.verifyCMS(
-	# 			clientCode,
-	# 			receiptID,
-	# 		)
-	# 		puts response
-	# 		assert_not_nil(response)
-	# 	end
+	# 	response = BaseServiceTest::NavercertInstance.verifyCMS(
+	# 		clientCode,
+	# 		receiptID,
+	# 	)
+	# 	puts response
+	# 	assert_not_nil(response)
+	# end
 end
