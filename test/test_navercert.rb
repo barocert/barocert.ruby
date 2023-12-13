@@ -67,7 +67,9 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 		"expireIn" => 1000,
 	# 		"tokenType" => 'TEXT',
 	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 원문'),
-	#		"appUseYN" => false
+	# # 	"tokenType" => 'HASH',
+	# # 	"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256_base64url('전자서명(단건) 요청 원문')),
+	# #		"appUseYN" => false
 	# 	}
 
 	# 	response = BaseServiceTest::NavercertInstance.requestSign(
@@ -118,10 +120,14 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 			{
 	# 				"tokenType" => "TEXT",
 	# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 1'),
+	# # 			"tokenType" => 'HASH',
+	# # 			"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256_base64url('전자서명(복수) 요청 원문 1')),
 	# 			},
 	# 			{
 	# 				"tokenType" => "TEXT",
 	# 				"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(복수) 요청 원문 2'),
+	# # 			"tokenType" => 'HASH',
+	# # 			"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256_base64url('전자서명(복수) 요청 원문 2')),
 	# 			},
 	# 		],
 	#		"appUseYN" => false

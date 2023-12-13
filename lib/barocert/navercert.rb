@@ -20,11 +20,7 @@ class NavercertService < BarocertService
 		private :new
 	end
 
-	def _sha256(target)
-		return hash(target)
-	end
-
-	def hash(target)
+	def _sha256_base64url(target)
 		hashed = Digest::SHA256.digest(target)
 		return Base64.urlsafe_encode64(hashed, padding:false)
 	end
