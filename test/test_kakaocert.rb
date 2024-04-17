@@ -44,7 +44,7 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		assert_not_nil(response)
 # 	end
 
-# 	def test_03verifyLogin
+# 	def test_03verifyIdentity
 # 		clientCode = "023040000001"
 # 		receiptID = "02304190230300000040000000000039"
 
