@@ -21,8 +21,11 @@ class NavercertService < BarocertService
 	end
 
 	def _sha256_base64url(target)
-		hashed = Digest::SHA256.digest(target)
-		return Base64.urlsafe_encode64(hashed, padding:false)
+		return self.sha256Base64urlFile(target)
+	end
+
+	def _sha256_base64url_file(target)
+		return self.sha256Base64urlFile(target)
 	end
 
 	def _encrypt(plaintext)

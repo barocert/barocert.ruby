@@ -4,6 +4,7 @@ require 'uri'
 require 'json'
 require 'date'
 require 'linkhub'
+require 'digest'
 
 # Barocert API BaseService class
 class BarocertService
@@ -192,6 +193,11 @@ class BarocertService
 	end
 
 	#end of httppost
+
+	def sha256Base64urlFile(target)
+		hashed = Digest::SHA256.digest(target)
+		return Base64.urlsafe_encode64(hashed, padding:false)
+	end
 end
 
 # Barocert API Exception Handler class

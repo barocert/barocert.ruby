@@ -65,36 +65,42 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 	assert_not_nil(response)
 	# end
 
-	# def test_04requestSign
+	def test_04requestSign
 		
-	# 	clientCode = "023070000014"
+		clientCode = "023070000014"
 
-	# 	sign = {
-	# 		"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
-	# 		"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동'),
-	# 		"receiverBirthday" => BaseServiceTest::PasscertInstance._encrypt('19700101'),
-	# 		"reqTitle" => '전자서명 요청 메시지 제목',
-	# 		"reqMessage" => BaseServiceTest::PasscertInstance._encrypt('전자서명 요청 메시지'),
-	# 		"callCenterNum" => '1600-9854',
-	# 		"expireIn" => 1000,
-	# 		"token" => BaseServiceTest::PasscertInstance._encrypt('전자서명 요청 원문'),
-	# 		"tokenType" => 'HASH',
-	# 		'userAgreementYN' => true,
-	# 		'receiverInfoYN' => true,
-	# 		'originalTypeCode' => 'TR',
-	# 		'originalURL' => 'https://www.passcert.co.kr',
-	# 		'originalFormatCode' => 'HTML',
-	# 		"appUseYN" => false,
-	# 		#'telcoType' => 'SKT',
-	# 		#'deviceOSType' => 'IOS'
-	# 	}
+		file = File.open(File.expand_path("../barocert.pdf"), "rb")
+		target = file.read
+		file.close
 
-	# 	response = BaseServiceTest::PasscertInstance.requestSign(
-	# 		clientCode,
-	# 		sign,
-	# 	)
-	# 	puts response
-	# end
+		sign = {
+			"receiverHP" => BaseServiceTest::PasscertInstance._encrypt('01012341234'),
+			"receiverName" => BaseServiceTest::PasscertInstance._encrypt('홍길동'),
+			"receiverBirthday" => BaseServiceTest::PasscertInstance._encrypt('19700101'),
+			"reqTitle" => '전자서명 요청 메시지 제목',
+			"reqMessage" => BaseServiceTest::PasscertInstance._encrypt('전자서명 요청 메시지'),
+			"callCenterNum" => '1600-9854',
+			"expireIn" => 1000,
+			# "tokenType" => 'HASH',
+			# "token" => BaseServiceTest::PasscertInstance._encrypt('전자서명 요청 원문'),
+			"tokenType" => 'PDF',
+			"token" => BaseServiceTest::PasscertInstance._encrypt(BaseServiceTest::PasscertInstance._sha256_base64url_file(target)),
+			'userAgreementYN' => true,
+			'receiverInfoYN' => true,
+			'originalTypeCode' => 'TR',
+			'originalURL' => 'https://www.passcert.co.kr',
+			'originalFormatCode' => 'HTML',
+			"appUseYN" => false,
+			#'telcoType' => 'SKT',
+			#'deviceOSType' => 'IOS'
+		}
+
+		response = BaseServiceTest::PasscertInstance.requestSign(
+			clientCode,
+			sign,
+		)
+		puts response
+	end
 
 	# def test_05getSignStatus
 		

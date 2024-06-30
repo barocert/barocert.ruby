@@ -57,6 +57,10 @@ class BaseServiceTest < Test::Unit::TestCase
 		
 	# 	clientCode = "023090000021"
 
+	# 	file = File.open(File.expand_path("../barocert.pdf"), "rb")
+	# 	target = file.read
+	# 	file.close
+
 	# 	sign = {
 	# 		"receiverHP" => BaseServiceTest::NavercertInstance._encrypt('01012341234'),
 	# 		"receiverName" => BaseServiceTest::NavercertInstance._encrypt('홍길동'),
@@ -67,9 +71,9 @@ class BaseServiceTest < Test::Unit::TestCase
 	# 		"expireIn" => 1000,
 	# 		"tokenType" => 'TEXT',
 	# 		"token" => BaseServiceTest::NavercertInstance._encrypt('전자서명(단건) 요청 원문'),
-	# # 	"tokenType" => 'HASH',
-	# # 	"token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256_base64url('전자서명(단건) 요청 원문')),
-	# #		"appUseYN" => false
+	# 		# "tokenType" => 'PDF',
+	# 		# "token" => BaseServiceTest::NavercertInstance._encrypt(BaseServiceTest::NavercertInstance._sha256_base64url_file(target)),
+	# 		# "appUseYN" => false
 	# 	}
 
 	# 	response = BaseServiceTest::NavercertInstance.requestSign(

@@ -19,6 +19,10 @@ class PasscertService < BarocertService
 		private :new
 	end
 
+	def _sha256_base64url_file(target)
+		return self.sha256Base64urlFile(target)
+	end
+
 	def _encrypt(plaintext)
 		return aes256gcm(plaintext, @linkhub._secretKey)
 	end

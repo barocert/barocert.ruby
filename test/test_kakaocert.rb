@@ -56,22 +56,28 @@ class BaseServiceTest < Test::Unit::TestCase
 # 		assert_not_nil(response)
 # 	end
 
-# 	def test_04requestSign
+# def test_04requestSign
 
-# 		clientCode = "023040000001"
+# 	clientCode = "023040000001"
 
-# 		sign = {
-# 			"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
-# 			"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
-# 			"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
-# 			"signTitle" => '전자서명(단건) 서명 요청 제목',
-# 			"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 커스텀 메시지'),
-# 			"expireIn" => 1000,
-# 			"token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 원문'),
-# 			"tokenType" => 'TEXT',
-# 			"appUseYN" => false,
-# 			"returnURL" => 'https://kakao.barocert.com'
-# 		}
+# 	file = File.open(File.expand_path("../barocert.pdf"), "rb")
+# 	target = file.read
+# 	file.close
+
+# 	sign = {
+# 		"receiverHP" => BaseServiceTest::KakaocertInstance._encrypt('01012341234'),
+# 		"receiverName" => BaseServiceTest::KakaocertInstance._encrypt('홍길동'),
+# 		"receiverBirthday" => BaseServiceTest::KakaocertInstance._encrypt('19700101'),
+# 		"signTitle" => '전자서명(단건) 서명 요청 제목',
+# 		"extraMessage" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 커스텀 메시지'),
+# 		"expireIn" => 1000,
+# 		# "tokenType" => 'TEXT',
+# 		# "token" => BaseServiceTest::KakaocertInstance._encrypt('전자서명(단건) 요청 원문'),
+# 		"tokenType" => 'PDF',
+# 		"token" => BaseServiceTest::KakaocertInstance._encrypt(BaseServiceTest::KakaocertInstance._sha256_base64url_file(target)),
+# 		# "appUseYN" => false,
+# 		"returnURL" => 'https://kakao.barocert.com'
+# 	}
 
 # 		response = BaseServiceTest::KakaocertInstance.requestSign(
 # 			clientCode,
