@@ -155,7 +155,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/KAKAO/Identity/#{clientCode}/#{receiptID}")
+		httppost("/KAKAO/Identity/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestSign(clientCode, sign)
@@ -242,7 +242,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/KAKAO/Sign/#{clientCode}/#{receiptID}")
+		httppost("/KAKAO/Sign/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestMultiSign(clientCode, multiSign)
@@ -334,7 +334,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/KAKAO/MultiSign/#{clientCode}/#{receiptID}")
+		httppost("/KAKAO/MultiSign/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestCMS(clientCode, cms)
@@ -438,7 +438,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/KAKAO/CMS/#{clientCode}/#{receiptID}")
+		httppost("/KAKAO/CMS/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def verifyLogin(clientCode, txID)
@@ -455,7 +455,7 @@ class KakaocertService < BarocertService
 			raise BarocertException.new('-99999999', '트랜잭션 아이디가 입력되지 않았습니다.')
 		end
 		
-		httppost("/KAKAO/Login/#{clientCode}/#{txID}")
+		httppost("/KAKAO/Login/Verify/#{clientCode}/#{txID}")
 	end
 end
 

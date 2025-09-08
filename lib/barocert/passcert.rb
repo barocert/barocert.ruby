@@ -160,7 +160,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
 
-		httppost("/PASS/Identity/#{clientCode}/#{receiptID}", identityVerify.to_json)
+		httppost("/PASS/Identity/Verify/#{clientCode}/#{receiptID}", identityVerify.to_json)
 	end
 
 	def requestSign(clientCode, sign)
@@ -252,7 +252,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
 
-		httppost("/PASS/Sign/#{clientCode}/#{receiptID}", signVerify.to_json)
+		httppost("/PASS/Sign/Verify/#{clientCode}/#{receiptID}", signVerify.to_json)
 	end
 
 	def requestCMS(clientCode, cms)
@@ -350,7 +350,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
 
-		httppost("/PASS/CMS/#{clientCode}/#{receiptID}", cmsVerify.to_json)
+		httppost("/PASS/CMS/Verify/#{clientCode}/#{receiptID}", cmsVerify.to_json)
 	end
 
 	def requestLogin(clientCode, login)
@@ -442,7 +442,7 @@ class PasscertService < BarocertService
 			raise BarocertException.new('-99999999', '수신자 성명이 입력되지 않았습니다.')
 		end
 	
-		httppost("/PASS/Login/#{clientCode}/#{receiptID}", loginVerify.to_json)
+		httppost("/PASS/Login/Verify/#{clientCode}/#{receiptID}", loginVerify.to_json)
 	end
 end
 

@@ -155,7 +155,7 @@ class NavercertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/NAVER/Identity/#{clientCode}/#{receiptID}")
+		httppost("/NAVER/Identity/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestSign(clientCode, sign)
@@ -250,7 +250,7 @@ class NavercertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/NAVER/Sign/#{clientCode}/#{receiptID}")
+		httppost("/NAVER/Sign/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestMultiSign(clientCode, multiSign)
@@ -346,7 +346,7 @@ class NavercertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/NAVER/MultiSign/#{clientCode}/#{receiptID}")
+		httppost("/NAVER/MultiSign/Verify/#{clientCode}/#{receiptID}")
 	end
 
 	def requestCMS(clientCode, cms)
@@ -440,7 +440,7 @@ class NavercertService < BarocertService
 			raise BarocertException.new('-99999999', '접수아이디는 32자 입니다.')
 		end
 
-		httppost("/NAVER/CMS/#{clientCode}/#{receiptID}")
+		httppost("/NAVER/CMS/Verify/#{clientCode}/#{receiptID}")
 	end
 end
 
